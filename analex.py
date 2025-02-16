@@ -13,6 +13,8 @@ global check_key
 
 alfabeto = list(string.ascii_lowercase + string.ascii_uppercase)
 
+alfabeto_maiusculo = list(string.ascii_uppercase)
+
 numeros = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
 caracter = ['\n', ' ', '(', ')', '[', ']', '{', '}', ';', ',', '+', '-', '/', '*', '=', '!', '<', '>']
@@ -44,8 +46,6 @@ labels = [
     'LBRACES', 'RBRACES', 'ATTRIBUTION', 'SEMICOLON', 'COMMA', 
     'NUMBER', 'ID'
 ]
-
-
 
 transitions = {
     'q0': {
@@ -231,7 +231,7 @@ transitions = {
             },
             'qIf' : {
                 #fim do if#
-               '+': 'qAdd',
+                '+': 'qAdd',
                 '-': 'qSubtract',
                 '*': 'qMultiply',
                 '/': 'qDivide',
@@ -324,8 +324,8 @@ transitions = {
                 '0' : 'qNumber',
             },
             'qInt3' : {
-              ## fim do int ##  
-               '+': 'qAdd',
+            ## fim do int ##  
+                '+': 'qAdd',
                 '-': 'qSubtract',
                 '*': 'qMultiply',
                 '/': 'qDivide',
@@ -359,7 +359,7 @@ transitions = {
             },
             'qElse1' : {
                 'l' : 'qElse2',
-                 '+': 'qAdd',
+                '+': 'qAdd',
                 '-': 'qSubtract',
                 '*': 'qMultiply',
                 '/': 'qDivide',
@@ -419,7 +419,7 @@ transitions = {
             },
             'qElse2' : {
                 's' : 'qElse3',
-                 '+': 'qAdd',
+                '+': 'qAdd',
                 '-': 'qSubtract',
                 '*': 'qMultiply',
                 '/': 'qDivide',
@@ -539,7 +539,7 @@ transitions = {
             },
             'qElse4' : {
                 ## fim do else ##
-                 '+': 'qAdd',
+                '+': 'qAdd',
                 '-': 'qSubtract',
                 '*': 'qMultiply',
                 '/': 'qDivide',
@@ -573,7 +573,7 @@ transitions = {
             },
             'qReturn1' : {
                 'e' : 'qReturn2',
-                 '+': 'qAdd',
+                '+': 'qAdd',
                 '-': 'qSubtract',
                 '*': 'qMultiply',
                 '/': 'qDivide',
@@ -873,7 +873,7 @@ transitions = {
             },
             'qReturn6' : {
                 #fim do return#
-                 '+': 'qAdd',
+                '+': 'qAdd',
                 '-': 'qSubtract',
                 '*': 'qMultiply',
                 '/': 'qDivide',
@@ -1027,7 +1027,7 @@ transitions = {
             },
             'qVoid3' : {
                 'd' : 'qVoid4',
-                 '+': 'qAdd',
+                '+': 'qAdd',
                 '-': 'qSubtract',
                 '*': 'qMultiply',
                 '/': 'qDivide',
@@ -3110,6 +3110,63 @@ transitions = {
             }
 }
 
+
+
+# Estado q0
+transitions['q0'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+
+# Estado qId
+transitions['qId'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+
+# Estado qId1
+transitions['qId1'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+
+# Estados qReturn1 até qReturn6
+for i in range(1, 7):
+    transitions[f'qReturn{i}'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+
+# Estado qWhile
+transitions['qWhile'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+
+# Estado qIf
+transitions['qIf'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+
+# Estados qElse1 até qElse4
+for i in range(1, 5):
+    transitions[f'qElse{i}'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+
+# Estado qVoid1
+transitions['qVoid1'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+
+# Estado qLoop1
+transitions['qLoop1'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+
+# Outros estados (se necessário)
+transitions['qO'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qA'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qT'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qH'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qI'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qL'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qE'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+
+# Outros estados que podem precisar de transições para letras maiúsculas
+transitions['qAdd'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qSubtract'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qMultiply'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qDivide'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qLessThan'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qGreaterThan'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qEquals'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qNotEqual'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qLeftParen'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qRightParen'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qLeftBracket'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qRightBracket'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qLeftBrace'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+transitions['qRightBrace'].update({letter: 'qId' for letter in alfabeto_maiusculo})
+
+
 # Estado inicial da máquina
 initial_state = "q0"
 
@@ -3186,18 +3243,18 @@ def main():
     check_cm = False
     check_key = False
 
-    if len(sys.argv) < 2:
+    if(len(sys.argv) < 2):
         raise TypeError(error_handler.newError(check_key, 'ERR-LEX-USE'))
-
+    
     for idx, arg in enumerate(sys.argv):
-        file_extension = arg.split('.')
-        if file_extension[-1] == 'cm':
+        aux = arg.split('.')
+        if aux[-1] == 'cm':
             check_cm = True
             idx_cm = idx
 
-        if arg == "-k":
+        if(arg == "-k"):
             check_key = True
-
+    
     if check_key and len(sys.argv) < 3:
         raise TypeError(error_handler.newError(check_key, 'ERR-LEX-USE'))
     elif not check_cm:
@@ -3205,8 +3262,8 @@ def main():
     elif not os.path.exists(sys.argv[idx_cm]):
         raise IOError(error_handler.newError(check_key, 'ERR-LEX-FILE-NOT-EXISTS'))
     else:
-        with open(sys.argv[idx_cm], 'r') as file:
-            source_file = file.read()
+        data = open(sys.argv[idx_cm])
+        source_file = data.read()
 
         try:
             if not check_key:
@@ -3215,33 +3272,33 @@ def main():
                 print("Entrada:")
                 print(source_file)
                 print("Lista de Tokens:")
-
+            
             print(moore.get_output_from_string(source_file).rstrip('\n'))
 
-            moore_to_jflap(states, full_char_list, labels, transitions, initial_state, output_table, 'machine.jff')
-
+            moore_to_jflap(states, fullList, tokens, transitions, 'q0', outputs, 'jflap/moore_machine.jff')
+            
         except Exception as e:
             error_msg = str(e)
-
-            # Identifica o caractere que gerou o erro
+    
+            # Tentando encontrar o caractere que causou o erro na entrada
             for i, char in enumerate(source_file):
                 try:
-                    moore.get_output_from_string(source_file[:i+1])  # Testa até o caractere atual
+                    moore.get_output_from_string(source_file[:i+1])  # Tenta processar até o caractere atual
                 except Exception:
+                    # Encontramos a posição do erro
                     error_index = i
                     break
             else:
-                error_index = None  # Caso não encontre o erro
-
+                error_index = None  # Caso não encontre
+            
             if error_index is not None:
-                # Localiza a linha e a coluna do erro
+                # Encontrar a linha e coluna do erro
                 line = source_file[:error_index].count('\n') + 1
                 last_newline = source_file[:error_index].rfind('\n')
                 column = (error_index - last_newline) if last_newline != -1 else error_index + 1
                 raise IOError(error_handler.newError(check_key, 'ERR-LEX-INV-CHAR', line, column, valor=e))
             else:
                 line, column = "Desconhecido", "Desconhecido"
-
 
 if __name__ == "__main__":
     try:

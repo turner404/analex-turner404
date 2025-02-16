@@ -1,12 +1,14 @@
-int a;
-float b;
+int add(int a, int b){
+  return a + b;
+}
 
 int main(void){
-  int x;
-  float y;
+  int x, y, result;
 
-  x = 10;      // Atribuindo 10 a x
-  y = 3.14;    // Atribuindo 3.14 a y
+  x = 5;
+  y = 8;
+  result = add(x, y);
 
+  output(result);
   return 0;
 }
