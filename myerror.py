@@ -26,4 +26,3 @@ class MyError():
 
     # print(message)
       return message.strip()
-

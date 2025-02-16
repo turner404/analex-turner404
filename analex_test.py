@@ -37,4 +37,3 @@ def test_execute(input_file, args):
     print(expected_output)
 
     assert stdout.decode("utf-8").strip() == expected_output.strip()
-
