@@ -1,1 +1,12 @@
-int
+int a;
+float b;
+
+int main(void){
+  int x;
+  float y;
+
+  x = 10;      // Atribuindo 10 a x
+  y = 3.14;    // Atribuindo 3.14 a y
+
+  return 0;
+}

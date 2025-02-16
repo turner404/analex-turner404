@@ -1,5 +1,4 @@
-# from automata.fa.Moore import Moore
-from automata.fa.moore import Moore
+from automata.fa.Moore import Moore
 import sys, os
 import string
 from collections import defaultdict
@@ -3175,12 +3174,13 @@ output_table = {
 # Instância do autômato de Moore
 moore = Moore(
     states,
-    full_char_list,
+    fullList,
     labels,
     transitions,
     initial_state,
     output_table
 )
+
 
 def main():
     check_cm = False
