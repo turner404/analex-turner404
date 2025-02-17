@@ -3239,6 +3239,8 @@ moore = Moore(
 )
 
 
+import os
+
 def main():
     check_cm = False
     check_key = False
@@ -3264,6 +3266,10 @@ def main():
     else:
         data = open(sys.argv[idx_cm])
         source_file = data.read()
+
+        # Verifica e cria o diretório 'jflap', se necessário
+        if not os.path.exists('jflap'):
+            os.makedirs('jflap')
 
         try:
             if not check_key:
