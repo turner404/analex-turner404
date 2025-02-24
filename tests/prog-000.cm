@@ -1,14 +1,1 @@
-int add(int a, int b){
-  return a + b;
-}
-
-int main(void){
-  int x, y, result;
-
-  x = 5;
-  y = 8;
-  result = add(x, y);
-
-  output(result);
-  return 0;
-}
+int
